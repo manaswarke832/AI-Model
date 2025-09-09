@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poem Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Georgia', serif;
+        }
+        .container {
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+        }
+        .hero-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        #poem-output {
+            min-height: 200px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.05);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            white-space: pre-line;
+            font-style: italic;
+            overflow-y: auto;
+        }
+        input, button {
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container p-6">
+        <div class="hero-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a841550a-9e5f-405c-adea-7e20bb0c809d.png" alt="Abstract painting of swirling colors representing creativity, with brushes and ink splatters on a canvas in a bright studio with natural light from windows" />
+        </div>
+        <h1 class="text-3xl font-bold text-gray-800 text-center mb-4">Poetry Palace</h1>
+        <p class="text-gray-600 text-center mb-6">Enter a topic, and watch a custom poem unfold before your eyes!</p>
+        <div class="flex gap-2 mb-4">
+            <input id="topic-input" type="text" placeholder="E.g., love, nature, dreams..." class="flex-1 p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            <button id="generate-btn" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600">Generate Poem</button>
+        </div>
+        <div id="poem-output" class="rounded-lg text-lg text-gray-800"></div>
+    </div>
+
+    <script>
+        document.getElementById('generate-btn').addEventListener('click', function() {
+            const topic = document.getElementById('topic-input').value.trim();
+            if (!topic) {
+                alert('Please enter a topic!');
+                return;
+            }
+
+            const poem = generatePoem(topic);
+            document.getElementById('poem-output').innerText = poem;
+        });
+
+        function generatePoem(topic) {
+            const lines = [
+                `Amidst the whispers of ${topic}, a tale unfolds,`,
+                `Where ${topic} dances in colors untold.`,
+                `The essence of ${topic} in every hue,`,
+                `Painting the sky, making dreams come true.`,
+                `Oh, ${topic}, you are the silent song,`,
+                `In your embrace, life carries on.`,
+                `Twists and turns, like a winding road,`,
+                `${topic} in heart, a heavy load.`,
+                `Yet in its light, we find our way,`,
+                `Embracing ${topic} day by day.`
+            ];
+            
+            // Add randomness by shuffling and slicing for variation
+            const shuffledLines = lines.sort(() => 0.5 - Math.random());
+            const poemLength = Math.floor(Math.random() * 5) + 6; // 6-10 lines
+            return shuffledLines.slice(0, poemLength).join('\n');
+        }
+    </script>
+</body>
+</html>
+</content>
+</create_file>
